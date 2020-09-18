@@ -1,0 +1,140 @@
+[root@ovn-control-plane ~]# ovn-nbctl show
+switch c54a38d8-b63e-4e90-91b0-638588eb1f78 (ovn-worker)
+    port kube-system_coredns-f9fd979d6-fpv5h
+        addresses: ["0a:58:0a:f4:02:03 10.244.2.3"]
+    port default_server
+        addresses: ["0a:58:0a:f4:02:05 10.244.2.5"]
+    port stor-ovn-worker
+        type: router
+        addresses: ["0a:58:0a:f4:02:01"]
+        router-port: rtos-ovn-worker
+    port k8s-ovn-worker
+        addresses: ["d2:b6:54:5e:37:25 10.244.2.2"]
+    port local-path-storage_local-path-provisioner-78776bfc44-hg2wp
+        addresses: ["0a:58:0a:f4:02:04 10.244.2.4"]
+switch af684cd9-6c16-448a-9afb-3d92d87d222f (join_ovn-control-plane)
+    port jtod-ovn-control-plane
+        type: router
+        router-port: dtoj-ovn-control-plane
+    port jtor-GR_ovn-control-plane
+        type: router
+        router-port: rtoj-GR_ovn-control-plane
+switch 0571d309-a5a6-480a-bf54-f7df4801bb24 (ovn-worker2)
+    port default_client
+        addresses: ["0a:58:0a:f4:00:04 10.244.0.4"]
+    port stor-ovn-worker2
+        type: router
+        addresses: ["0a:58:0a:f4:00:01"]
+        router-port: rtos-ovn-worker2
+    port k8s-ovn-worker2
+        addresses: ["fe:86:8e:21:dc:97 10.244.0.2"]
+    port kube-system_coredns-f9fd979d6-2hmvs
+        addresses: ["0a:58:0a:f4:00:03 10.244.0.3"]
+switch 4e7e8a71-bfae-4b9f-8536-8344df4a1a93 (join_ovn-worker)
+    port jtod-ovn-worker
+        type: router
+        router-port: dtoj-ovn-worker
+    port jtor-GR_ovn-worker
+        type: router
+        router-port: rtoj-GR_ovn-worker
+switch d1357902-6dc1-42e7-81fb-e46dbeeb9b2f (ovn-control-plane)
+    port stor-ovn-control-plane
+        type: router
+        addresses: ["0a:58:0a:f4:01:01"]
+        router-port: rtos-ovn-control-plane
+    port k8s-ovn-control-plane
+        addresses: ["da:23:5d:41:c5:79 10.244.1.2"]
+switch 9320c483-7033-49a5-a71b-6710ce0095ca (node_local_switch)
+    port lnet-node_local_switch
+        type: localnet
+        addresses: ["unknown"]
+    port stor-node_local_switch
+        type: router
+        router-port: rtos-node_local_switch
+switch 142e4b15-4cc2-4367-98ad-5b6247893c2e (ext_ovn-worker)
+    port etor-GR_ovn-worker
+        type: router
+        addresses: ["02:42:ac:12:00:03"]
+        router-port: rtoe-GR_ovn-worker
+    port breth0_ovn-worker
+        type: localnet
+        addresses: ["unknown"]
+switch 4a328cce-a304-4021-a4e5-168041f44a56 (join_ovn-worker2)
+    port jtod-ovn-worker2
+        type: router
+        router-port: dtoj-ovn-worker2
+    port jtor-GR_ovn-worker2
+        type: router
+        router-port: rtoj-GR_ovn-worker2
+switch 348eed4f-61aa-4866-94df-c4a084dc6ea8 (ext_ovn-worker2)
+    port breth0_ovn-worker2
+        type: localnet
+        addresses: ["unknown"]
+    port etor-GR_ovn-worker2
+        type: router
+        addresses: ["02:42:ac:12:00:02"]
+        router-port: rtoe-GR_ovn-worker2
+switch 0b7e0757-ab6e-42b3-a222-186f6b47a74f (ext_ovn-control-plane)
+    port breth0_ovn-control-plane
+        type: localnet
+        addresses: ["unknown"]
+    port etor-GR_ovn-control-plane
+        type: router
+        addresses: ["02:42:ac:12:00:04"]
+        router-port: rtoe-GR_ovn-control-plane
+router f300d154-ec4a-4fa9-b37f-d70901c172b6 (GR_ovn-worker2)
+    port rtoj-GR_ovn-worker2
+        mac: "0a:58:64:40:00:01"
+        networks: ["100.64.0.1/29"]
+    port rtoe-GR_ovn-worker2
+        mac: "02:42:ac:12:00:02"
+        networks: ["172.18.0.2/16"]
+router 279ef1d1-f816-466d-88e2-1c93a0235c0b (GR_ovn-control-plane)
+    port rtoj-GR_ovn-control-plane
+        mac: "0a:58:64:40:02:01"
+        networks: ["100.64.2.1/29"]
+    port rtoe-GR_ovn-control-plane
+        mac: "02:42:ac:12:00:04"
+        networks: ["172.18.0.4/16"]
+router 577b9b3d-9fdf-4037-b8cc-32cd1ad282b0 (ovn_cluster_router)
+    port rtos-ovn-worker
+        mac: "0a:58:0a:f4:02:01"
+        networks: ["10.244.2.1/24"]
+    port rtos-ovn-worker2
+        mac: "0a:58:0a:f4:00:01"
+        networks: ["10.244.0.1/24"]
+    port dtoj-ovn-worker
+        mac: "0a:58:64:40:01:02"
+        networks: ["100.64.1.2/29"]
+    port dtoj-ovn-worker2
+        mac: "0a:58:64:40:00:02"
+        networks: ["100.64.0.2/29"]
+    port rtos-ovn-control-plane
+        mac: "0a:58:0a:f4:01:01"
+        networks: ["10.244.1.1/24"]
+    port rtos-node_local_switch
+        mac: "0a:58:a9:fe:00:02"
+        networks: ["169.254.0.2/20"]
+        gateway chassis: [8b050ddf-c991-424d-999d-668ab2ac6c9f]
+    port dtoj-ovn-control-plane
+        mac: "0a:58:64:40:02:02"
+        networks: ["100.64.2.2/29"]
+    nat 7cb0ec3d-3423-4389-a146-f95505a696dc
+        external ip: "169.254.0.188"
+        logical ip: "10.244.1.2"
+        type: "dnat_and_snat"
+    nat c8db301e-39d7-4423-a546-2e0662a8a354
+        external ip: "169.254.13.50"
+        logical ip: "10.244.2.2"
+        type: "dnat_and_snat"
+    nat f1fd150b-175b-4732-a167-f21c220e2e11
+        external ip: "169.254.14.138"
+        logical ip: "10.244.0.2"
+        type: "dnat_and_snat"
+router 53bdc4ff-7bd6-4744-9385-b3a244c8d4ae (GR_ovn-worker)
+    port rtoj-GR_ovn-worker
+        mac: "0a:58:64:40:01:01"
+        networks: ["100.64.1.1/29"]
+    port rtoe-GR_ovn-worker
+        mac: "02:42:ac:12:00:03"
+        networks: ["172.18.0.3/16"]
